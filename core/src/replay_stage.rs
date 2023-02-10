@@ -3161,13 +3161,7 @@ impl ReplayStage {
                 failure_reasons.push(HeaviestForkFailures::LockedOut(bank.slot()));
             }
             if !vote_threshold {
-                info!(
-                    "MVO: FailedThreshold => bank.slot: {}, fork_weight: {}, is_locked_out: {}, vote_threshold: {}", 
-                    bank.slot(), 
-                    fork_weight, 
-                    is_locked_out, 
-                    vote_threshold,
-                );
+                info!("MVO_1: FailedThreshold");
                 failure_reasons.push(HeaviestForkFailures::FailedThreshold(bank.slot()));
             }
             if !propagation_confirmed {
