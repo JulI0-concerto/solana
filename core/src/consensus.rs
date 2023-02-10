@@ -988,6 +988,7 @@ impl Tower {
         process_slot_vote_unchecked(&mut vote_state, slot);
         let vote = vote_state.nth_recent_vote(self.threshold_depth);
         if let Some(vote) = vote {
+            info!("MVO: votes.len > threshold_depth: {} > {}", vote_state.votes.len(), self.threshold_depth);
             if let Some(fork_stake) = voted_stakes.get(&vote.slot()) {
                 let lockout = *fork_stake as f64 / total_stake as f64;
                 trace!(
@@ -1003,6 +1004,7 @@ impl Tower {
                         }
                     }
                 }
+                info!("MVO: lockout {} > self.threshold_size {}", lockout, self.threshold_size);
                 lockout > self.threshold_size
             } else {
                 false
